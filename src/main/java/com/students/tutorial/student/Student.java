@@ -22,6 +22,7 @@ public class Student {
         this.dob = dob;
     }
 
+    // this one has no id because the db will generate an id for us
     public Student( String name, String email, Integer age, LocalDate dob) {
         this.name = name;
         this.email = email;
