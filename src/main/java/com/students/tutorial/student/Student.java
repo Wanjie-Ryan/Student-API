@@ -1,9 +1,22 @@
 package com.students.tutorial.student;
 
+import jakarta.persistence.*;
+
 import java.time.LocalDate;
 
+//mapping the student model to a table in the DB using Java Persistence API
+@Entity
+// entity annotation specifies that this class is an entity and is mapped to a DB
+
+@Table
+//This annotation specifies the table in the database with which the entity is mapped. If you don't specify a name, the table name will default to the class name.
 public class Student {
 
+    @Id
+    // This annotation specifies the primary key of the entity.
+    @SequenceGenerator(name= "student_sequence", sequenceName ="student_sequence", allocationSize =1)
+    //This means that each time a new Student entity is created, the sequence will generate a new ID by incrementing the previous value by 1.
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "student_sequence")
     private Long id;
     private String name;
     private String email;
