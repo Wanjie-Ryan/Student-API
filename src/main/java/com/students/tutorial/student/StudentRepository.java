@@ -20,3 +20,13 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
 
 
 }
+
+// You should implement custom methods in the repository when:
+//
+//The default CRUD methods are insufficient for your use case.
+//You need complex queries involving multiple conditions, joins, or aggregates.
+//You need to perform conditional deletions or bulk updates.
+//You need to return custom projections or DTOs.
+//You have specific business logic that should be part of the repository layer.
+//You need to use database-specific features or native SQL queries.
+//The method names for derived queries become too complex or unreadable.
