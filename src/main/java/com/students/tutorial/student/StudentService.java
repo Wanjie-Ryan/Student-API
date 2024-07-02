@@ -39,6 +39,8 @@ public class StudentService {
 
       if(studentByEmail.isPresent()){
          throw new IllegalStateException("email is taken");
+
+         // there is no need of the return statement as this method is void, it does not return anything to the user.
 //         return;
       }
 
