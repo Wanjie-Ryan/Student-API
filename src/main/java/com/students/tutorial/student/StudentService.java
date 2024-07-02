@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class StudentService {
@@ -25,8 +26,23 @@ public class StudentService {
         return studentRepository.findAll();
     }
 
+    // void: The method does not return a value.
+    //int: The method returns an integer value.
+    //String: The method returns a string value.
+    //List<Student>: The method returns a list of Student objects.
+
     public void addNewStudent(Student student) {
 
+        //The optional provides methods to check for a value, retrieve the value if present, or perform actions if the value is absent. The main purpose of Optional is to avoid null checks and NullPointerExceptions.
+
+      Optional<Student> studentByEmail =   studentRepository.findStudentByEmail(student.getEmail());
+
+      if(studentByEmail.isPresent()){
+         throw new IllegalStateException("email is taken");
+//         return;
+      }
+
+      studentRepository.save(student);
 
     }
 }
