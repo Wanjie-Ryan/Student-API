@@ -3,6 +3,7 @@ package com.students.tutorial.student;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.time.Period;
 
 //mapping the student model to a table in the DB using Java Persistence API
 @Entity
@@ -20,6 +21,8 @@ public class Student {
     private Long id;
     private String name;
     private String email;
+    @Transient
+    // transient means that the age column will not be created in the DB
     private Integer age;
     private LocalDate dob;
 
@@ -27,19 +30,17 @@ public class Student {
 
     }
 
-    public Student(Long id, String name, String email, Integer age, LocalDate dob) {
+    public Student(Long id, String name, String email, LocalDate dob) {
         this.id = id;
         this.name = name;
         this.email = email;
-        this.age = age;
         this.dob = dob;
     }
 
     // this one has no id because the db will generate an id for us
-    public Student( String name, String email, Integer age, LocalDate dob) {
+    public Student( String name, String email, LocalDate dob) {
         this.name = name;
         this.email = email;
-        this.age = age;
         this.dob = dob;
     }
 
@@ -69,7 +70,8 @@ public class Student {
     }
 
     public Integer getAge() {
-        return age;
+        // calculating the age from the DOB
+        return Period.between(this.dob, LocalDate.now()).getYears();
     }
 
     public void setAge(Integer age) {
