@@ -1,5 +1,6 @@
 package com.students.tutorial.student;
 
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -57,6 +58,18 @@ public class StudentService {
         }
 
         studentRepository.deleteById(id);
+
+
+    }
+
+    @Transactional
+    public void updateStudents(Long id, String name, String email) {
+
+        boolean exists = studentRepository.existsById(id);
+        if(!exists){
+            throw new IllegalStateException("student with id " +id + " does not exist");
+        }
+
 
 
     }
