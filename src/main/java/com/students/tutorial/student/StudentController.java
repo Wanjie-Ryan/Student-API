@@ -42,6 +42,7 @@ public class StudentController {
 
     @PutMapping(path="{studentId}")
 
+        //Flexibility in Parameters: Using @RequestParam allows you to make these parameters optional (required = false). This means that clients can choose to update only name, only email, or both without encountering errors due to missing parameters.
     public void updateStudent(@PathVariable("studentId") Long id, @RequestParam(required = false) String name, @RequestParam(required = false) String email ){
 
         studentService.updateStudents(id, name, email);
